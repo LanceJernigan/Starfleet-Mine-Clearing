@@ -55,7 +55,7 @@ const render = ({sprites, z, moves, counter, score, attacks}) => {
   const remaining = sprites.filter( sprite => sprite.type !== 'player' && sprite.hp > 0 && sprite.z > z),
         setState = setStateFor({sprites: sprites, z: z, moves: moves, counter: counter, score: score, attacks})
   
-  if (remaining.length) {
+  if (remaining.length && moves.length > z) {
     
     const move = moves[z].split(' ')
     const newCount = addCounter({move: moves[z], counter: counter})
@@ -160,4 +160,4 @@ const setStateFor = state => newState => {
   render(state)
 }
 
-getInitialState().then(render)
+getInitialState().then(render).catch(console.warn)

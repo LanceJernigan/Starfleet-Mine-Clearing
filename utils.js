@@ -16,7 +16,7 @@ const buildMoves = moves => moves.split('\n')
 
 const buildSprites = board => [...board.split('\n').reduce( (sprites, row, y) => {
   
-  return [...sprites, ...row.split('').reduce( (_sprites, piece, x) => {
+  return [...sprites, ...row.trim().split('').reduce( (_sprites, piece, x) => {
     
     return piece === '.' ? _sprites : [..._sprites, {
       type: 'mine',
@@ -58,6 +58,6 @@ export const getInitialState = () => {
     
     return state
     
-  })
+  }).catch(console.log)
   
 }
